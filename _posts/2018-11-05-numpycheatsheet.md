@@ -1,7 +1,3 @@
----
-layout : post
-title : "Awesome Numpy Tutorial"
----
 
 ## Numpy
 
