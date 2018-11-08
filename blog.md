@@ -9,4 +9,9 @@ title : Python for Data Science
       <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
     </li>
   {% endfor %}
+  {% for page in site.Algorithms %}
+    <li>
+      <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+    </li>
+  {% endfor %}
 </ul>

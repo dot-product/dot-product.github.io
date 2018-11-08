@@ -4,7 +4,7 @@ title  : About me
 ---
 ### Summary
 
-Venkatesh is computer science professional working as Data Scinece Engineer. He has more than 3 years of industry experience in various domians of data science. I received master degree in data science from IIIT-Delhi and Deep Learning specialisation from Deep Learning.ai. His research interests include algorithms performance optimisation, Applied Machine Learning and Distributed Systems.
+Venkatesh is a computer science professional, currently working as Data Scinece Engineer. He has more than 3 years of industry experience in various domians of data science. He received master degree in data science from IIIT-Delhi and Deep Learning specialisation from Deep Learning.ai. His research interests include algorithms performance optimisation, Applied Machine Learning and Distributed Systems.
 
 ### Work Experience 
 
@@ -39,5 +39,5 @@ In this work we explored the usage of hash based techniques for inner product si
 
 ### Contact
    
-  **e-mail** : venkytimmy@gmail.com
+  **e-mail** : venkytimmu@gmail.com
   **phone**     : 09949522101
