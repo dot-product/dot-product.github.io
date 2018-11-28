@@ -45,4 +45,4 @@ collections:
   Algorithms:
     output: true
   Hadoop:
-    output:true
+    output: true

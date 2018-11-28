@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Important Algorithms</title>
+  <meta name="description" content="Data Node went to Zombie state">
+  <link rel="canonical" href="http://localhost:4000/hdfs">
+</head>
+
+  <body>
+    <center>
+<nav>
+  
+    <a href="/" >
+      Home
+    </a>
+  
+    <a href="/blog.html" >
+      Blog
+    </a>
+  
+    <a href="/about.html" >
+      About
+    </a>
+  
+</nav>
+</center>
+<hr>
+
+
+    <h3 id="data-node-went-to-zombie-state">Data Node went to Zombie state</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Oneday moring i was randomly checking the cluster free space, as i scheduled one cleanup process previous day. I came to know that one of the DATANODE is not able to connect to namenode.
+- i checked DATANODE logs nothing is suspecious, so i went to Cloudera Manager Interface and restared DATANODE.(the problem started here!)
+- CM throwed timeout error but when i checked DATANODE logs, it clearly said DATANODE is shutdown.
+- I tried restarting cloudera-scm-agent on the box but no luck.
+	
+	sudo /etc/init.d/cloudera-scm-agent restart
+</code></pre></div></div>
+
+<ul>
+  <li>cloudera-scm-agent has supervisord, that manages services start,stop,restart operation. When i checked its log it continously printing SIGTERM on DATANODE and DATANODE is already running.</li>
+  <li>One of my collegue suggested to do clean-restart on the box. [Link][https://www.cloudera.com/documentation/enterprise/5-14-x/topics/cm_ag_agents.html]</li>
+  <li>This give us the clue that DATANODE port is already in use and DATANODE is running as Zombie process. Since it’s Parent processes is init we have no option other than rebooting the server.</li>
+  <li><em>:Rebooting server worked fine.</em></li>
+</ul>
+
+  </body>
+</html>
