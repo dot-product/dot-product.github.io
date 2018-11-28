@@ -44,3 +44,5 @@ collections:
     output: true
   Algorithms:
     output: true
+  Hadoop:
+    output:true

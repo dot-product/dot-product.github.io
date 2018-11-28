@@ -7,7 +7,7 @@ permalink: /algos
 
 ## Algorithms 
 
-This page helps in reviewing important algorithms computational complexities, thier pros and cons. It does not include how a paticular algorithm works, for that the reader should search for other resources.
+This page helps in reviewing important algorithms  and Data Structures computational complexities, thier pros and cons. It does not include how a paticular algorithm works, for that the reader should search for other resources.
 
 ### Arrays
 
