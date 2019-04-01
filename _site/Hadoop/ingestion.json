@@ -1,0 +1,67 @@
+{
+	u 'type': u 'index_hadoop', u 'hadoopCoordinates': u 'org.apache.hadoop:hadoop-client:2.6.0', u 'spec': {
+		u 'dataSchema': {
+			u 'metricsSpec': [{
+				u 'type': u 'count',
+				u 'name': u 'count'
+			}, {
+				u 'type': u 'longSum',
+				u 'fieldName': u 'size',
+				u 'name': u 'size'
+			}, {
+				u 'type': u 'longSum',
+				u 'fieldName': u 'tot_dirs',
+				u 'name': u 'tot_dirs'
+			}, {
+				u 'type': u 'longSum',
+				u 'fieldName': u 'tot_files',
+				u 'name': u 'tot_files'
+			}, {
+				u 'type': u 'longSum',
+				u 'fieldName': u 'tot_blks',
+				u 'name': u 'tot_blks'
+			}, {
+				u 'type': u 'longSum',
+				u 'fieldName': u 'avg_blk_size',
+				u 'name': u 'avg_blk_size'
+			}],
+			u 'granularitySpec': {
+				u 'queryGranularity': u 'MINUTE',
+				u 'intervals': ['2019-01-09T03:00:00.000Z/2019-01-09T04:00:00.000Z'],
+				u 'type': u 'uniform',
+				u 'segmentGranularity': u 'HOUR'
+			},
+			u 'parser': {
+				u 'parseSpec': {
+					u 'timestampSpec': {
+						u 'column': u 'ts',
+						u 'format': u 'yyyy-MM-dd HH:mm:ss'
+					},
+					u 'dimensionsSpec': {
+						u 'dimensions': [u 'cluster', u 'team', u 'service', u 'process_name', u 'path', u 'tier', u 'repl_factor', u 'is_cleanup', u 'is_archive', u 'owner', u 'field', u 'part_format', u 'part_type']
+					},
+					u 'format': u 'json'
+				},
+				u 'type': u 'hadoopyString'
+			},
+			u 'dataSource': u 'hadoop_tier_storage'
+		},
+		u 'tuningConfig': {
+			u 'jobProperties': {
+				u 'mapreduce.reduce.memory.mb': 1024,
+				u 'mapred.job.queue.name': u 'druid_batch.main',
+				u 'mapreduce.job.user.classpath.first': u 'true'
+			},
+			u 'type': u 'hadoop',
+			u 'ignoreInvalidRows': u 'true',
+			u 'useCombiner': u 'false'
+		},
+		u 'ioConfig': {
+			u 'type': u 'hadoop',
+			u 'inputSpec': {
+				u 'paths': '/user/venkatesulu.g/estomacal_20190109.txt',
+				u 'type': u 'static'
+			}
+		}
+	}
+}

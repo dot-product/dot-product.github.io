@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Important Algorithms</title>
+  <title>HDFS</title>
   <meta name="description" content="Data Node went to Zombie state">
   <link rel="canonical" href="http://localhost:4000/hdfs">
 </head>
@@ -33,20 +33,175 @@
 
     <h3 id="data-node-went-to-zombie-state">Data Node went to Zombie state</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Oneday moring i was randomly checking the cluster free space, as i scheduled one cleanup process previous day. I came to know that one of the DATANODE is not able to connect to namenode.
-- i checked DATANODE logs nothing is suspecious, so i went to Cloudera Manager Interface and restared DATANODE.(the problem started here!)
-- CM throwed timeout error but when i checked DATANODE logs, it clearly said DATANODE is shutdown.
-- I tried restarting cloudera-scm-agent on the box but no luck.
-	
-	sudo /etc/init.d/cloudera-scm-agent restart
+<ul>
+  <li>
+    <p>Oneday moring i was randomly checking the cluster free space, as i scheduled one cleanup process previous day. I came to know that one of the DATANODE is not able to connect to namenode.</p>
+  </li>
+  <li>
+    <p>I checked DATANODE logs nothing is suspecious, so i went to Cloudera Manager Interface and restared DATANODE.(the problem started here!)</p>
+  </li>
+  <li>
+    <p>CM throwed timeout error but when i checked DATANODE logs, it clearly said DATANODE is shutdown.</p>
+  </li>
+  <li>
+    <p>I tried restarting cloudera-scm-agent on the box but no luck.</p>
+
+    <p>sudo /etc/init.d/cloudera-scm-agent restart</p>
+  </li>
+  <li>
+    <p>cloudera-scm-agent has supervisord, that manages services start,stop,restart operations. When i checked its log it was continously printing two things</p>
+
+    <ul>
+      <li>SIGTERM on DATANODE and</li>
+      <li>DATANODE is already running.</li>
+    </ul>
+  </li>
+  <li>
+    <p>One of my collegue suggested to do clean-restart scm agent on the box. <a href="https://www.cloudera.com/documentation/enterprise/5-14-x/topics/cm_ag_agents.html">Link</a></p>
+  </li>
+  <li>
+    <p>This gave us the clue that DATANODE port is already in use and DATANODE is running as Zombie process. Since it’s Parent processes is init we have no option other than rebooting the server.</p>
+  </li>
+  <li>
+    <p><strong>Rebooting server worked fine.</strong></p>
+  </li>
+</ul>
+
+<h3 id="name-node--heap-number-of-blocks-fsimage-size">Name Node , Heap, Number of blocks, FSImage size</h3>
+
+<ul>
+  <li>
+    <p>Oneday afternoon we all planned to go out to have lunch. You know these services somehow know the right panic situation to fail.</p>
+  </li>
+  <li>
+    <p>One of our collegue called us saying that Hdfs Name Node is not coming up and it is stuck in safe mode by continuously throwing OOM.</p>
+  </li>
+  <li>
+    <p>After checking logs we decided to increase the heap size of Name Node. We increased it by 40% and Name node was up with out any issues.</p>
+  </li>
+  <li>
+    <p>To know the root cause for this, we analyzed our monitoring graphs to find out what could have happend.</p>
+  </li>
+  <li>
+    <p>Finally we came to know that one of recently on boarded team puts so many small files that increased number of blocks in our cluster exponentially.</p>
+  </li>
+  <li>
+    <p>This increased FSImage size which caused NameNode to stuck in safe Mode.</p>
+  </li>
+  <li>
+    <p>After couple of months we again faced so many GC pauses on namenode, This time with out incrasing NameNode Heap we dropped many unwanted files which helped us to avoid this.</p>
+  </li>
+  <li>
+    <p><strong>Small files problem</strong></p>
+  </li>
+</ul>
+
+   		- If there are so many small files which are smaller than HDFS block size they all create one entry for each file in FSImage which causes Huge FSImage file that in tern causes Load on NameNode Heap.
+
+   		- Each entry for files,dir,blocks meta occupy 150B in namenode meta store(FSImage)
+
+   		- <a href="https://blog.cloudera.com/blog/2009/02/the-small-files-problem/">Cloudera - Small files Problem</a>
+
+   		- https://stackoverflow.com/questions/44967519/hdfs-and-small-files-part-2?noredirect=1&amp;lq=1
+
+<h3 id="automatic-failover-in-hdfs">Automatic Failover in hdfs</h3>
+
+<ul>
+  <li>
+    <p>Two important components</p>
+
+    <ul>
+      <li>
+        <p>org.apache.hadoop.ha.HealthMonitor</p>
+
+        <ul>
+          <li>It periodically checks the health status of namenode by polling 8020 port</li>
+        </ul>
+      </li>
+      <li>
+        <p>org.apache.hadoop.ha.ZKFailoverController</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="quorum-based-ha-namenode-set-up">Quorum based HA NameNode set up</h3>
+
+<ul>
+  <li>Standby namenode also performs checkpoints of the namespace state and thus it is not necessary to run a Secondary Namenode, Checkpoint Node, or Backup Nodes in HA cluster.</li>
+</ul>
+
+<h3 id="datanode--namenode-can-we-become-friends">DataNode –&gt; NameNode can we become Friends</h3>
+
+<h3 id="heterogeneous-storage-type-in-hdfs">Heterogeneous Storage Type in HDFS</h3>
+
+<ul>
+  <li>
+    <p>HDFS provides following storage types</p>
+
+    <ul>
+      <li>RAM_DISK (Data Node Memory)</li>
+      <li>SSD (Solid State Drive/ low latency access like HBase)</li>
+      <li>DISK( To store data that need to be processed, defalut storage type)</li>
+      <li>ARCHIVE (High storage density, low processing resources)</li>
+    </ul>
+  </li>
+  <li>
+    <p>you can attach storage mount points to these storage type.</p>
+  </li>
+  <li>
+    <p>Data placement on these storage types depends on storage policies.</p>
+  </li>
+  <li>
+    <p>List all storage policies</p>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		
+		 hdfs storagepolicies -listPolicies
+		 Block Storage Policies:
+			BlockStoragePolicy{COLD:2, storageTypes=[ARCHIVE], creationFallbacks=[], replicationFallbacks=[]}
+			BlockStoragePolicy{WARM:5, storageTypes=[DISK, ARCHIVE], creationFallbacks=[DISK, ARCHIVE], replicationFallbacks=[DISK, ARCHIVE]}
+			BlockStoragePolicy{HOT:7, storageTypes=[DISK], creationFallbacks=[], replicationFallbacks=[ARCHIVE]}
+			BlockStoragePolicy{ONE_SSD:10, storageTypes=[SSD, DISK], creationFallbacks=[SSD, DISK], replicationFallbacks=[SSD, DISK]}
+			BlockStoragePolicy{ALL_SSD:12, storageTypes=[SSD], creationFallbacks=[DISK], replicationFallbacks=[DISK]}
+			BlockStoragePolicy{LAZY_PERSIST:15, storageTypes=[RAM_DISK, DISK], creationFallbacks=[DISK], replicationFallbacks=[DISK]}
 </code></pre></div></div>
 
 <ul>
-  <li>cloudera-scm-agent has supervisord, that manages services start,stop,restart operation. When i checked its log it continously printing SIGTERM on DATANODE and DATANODE is already running.</li>
-  <li>One of my collegue suggested to do clean-restart on the box. [Link][https://www.cloudera.com/documentation/enterprise/5-14-x/topics/cm_ag_agents.html]</li>
-  <li>This give us the clue that DATANODE port is already in use and DATANODE is running as Zombie process. Since it’s Parent processes is init we have no option other than rebooting the server.</li>
-  <li><em>:Rebooting server worked fine.</em></li>
+  <li>Use Hdfs <strong>MOVER</strong> to mover data from one storage type to onother</li>
 </ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		hdfs dfs mover [-f &lt;local file that contains list of hdfs paths&gt; -p &lt;files/dirs&gt;]
+</code></pre></div></div>
+<h3 id="important-data-structures-in-hdfs">Important Data structures in hdfs</h3>
+
+<h3 id="what-the-f_k-is-non-dfs-used">What the f<em>_</em>k is Non-DFS Used</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		Non DFS Used = Configured Capacity - Remaining Space - DFS Used
+
+		Configured Capacity = Total Disk Space - Reserved Space
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>** DataSpill**  in MapReduce</p>
+  </li>
+  <li>
+    <p>** DataSpill ** in spark</p>
+  </li>
+</ul>
+
+<h3 id="namespace-and-meta-data-in-hdfs">Namespace and Meta data in hdfs</h3>
+
+<ul>
+  <li><strong>Namespace</strong> : It is an abstraction over set of names. In hdfs it is set of hdfs paths(dir, files).</li>
+  <li>Meta Data : Name Node stores meta data in two files <strong>FSImage</strong> and <strong>EditLogs</strong></li>
+</ul>
+
+<h3 id="important-hdfs-configurations">Important hdfs configurations</h3>
+
 
   </body>
 </html>

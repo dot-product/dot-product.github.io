@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cloudera</title>
+  <meta name="description" content="###Cloudera Manager">
+  <link rel="canonical" href="http://localhost:4000/cloudera">
+</head>
+
+  <body>
+    <center>
+<nav>
+  
+    <a href="/" >
+      Home
+    </a>
+  
+    <a href="/blog.html" >
+      Blog
+    </a>
+  
+    <a href="/about.html" >
+      About
+    </a>
+  
+</nav>
+</center>
+<hr>
+
+
+    <p>###Cloudera Manager</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Cloudera manager server
+
+- Agent
+
+- Management service
+
+- Database
+
+- Clients 
+
+	- admin console
+	- Cloudera manager API
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Cloudera Manager distinguishes server and client configuration</p>
+
+    <ul>
+      <li>
+        <p>/etc/service/conf contains client specific configurations</p>
+      </li>
+      <li>
+        <p>/var/run/cloudera-scm-agent/process/unique-process-name contains role specific configurations.</p>
+      </li>
+      <li>
+        <p><strong>Gateway</strong> It is used to deploy a client configuration to a host that does not have a role assigned to it.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="process-management">Process Management</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- In cloudera manager managed cluster, you can only star or stop role instance processes using cloudera manager.
+
+- Cloudera manager uses process management tool called **supervisord**.
+
+- Agent is started by init.d script.
+
+- When the Agent detects a new process from the Server heartbeat, the Agent creates a directory for it in **/var/run/cloudera-scm-agent** and unpacks the configuration. It then contacts **supervisord,** which starts the process.
+</code></pre></div></div>
+
+<h3 id="software-distribution-management">Software Distribution Management</h3>
+
+  </body>
+</html>
