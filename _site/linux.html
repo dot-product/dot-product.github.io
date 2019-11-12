@@ -1,37 +1,49 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
   <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Linux</title>
-  <meta name="description" content="Fstab entries are not added">
-  <link rel="canonical" href="http://localhost:4000/linux">
-</head>
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Linux | Wecome to Wonderland</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Linux" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Fstab entries are not added" />
+<meta property="og:description" content="Fstab entries are not added" />
+<link rel="canonical" href="http://localhost:4000/linux" />
+<meta property="og:url" content="http://localhost:4000/linux" />
+<meta property="og:site_name" content="Wecome to Wonderland" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-11-29T00:00:00+05:30" />
+<script type="application/ld+json">
+{"dateModified":"2018-11-29T00:00:00+05:30","datePublished":"2018-11-29T00:00:00+05:30","url":"http://localhost:4000/linux","headline":"Linux","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/linux"},"description":"Fstab entries are not added","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
   <body>
-    <center>
-<nav>
-  
-    <a href="/" >
-      Home
-    </a>
-  
-    <a href="/blog.html" >
-      Blog
-    </a>
-  
-    <a href="/about.html" >
-      About
-    </a>
-  
-</nav>
-</center>
-<hr>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/">Wecome to Wonderland</a></h1>
+        
+        
 
+        <p>Thanks for visiting my site. Please take some time to look around!</p>
 
-    <h2 id="fstab-entries-are-not-added">Fstab entries are not added</h2>
+        
+
+        
+
+        
+      </header>
+      <section>
+
+      <h2 id="fstab-entries-are-not-added">Fstab entries are not added</h2>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- List all disks with the types 
 
@@ -44,9 +56,26 @@
 - mount these lvs at different mount points
 
 - This mounting is not persistent as we did not add any entries to fstab. When the box is rebooted these mounts are gone!
+
+sudo pvcreate /dev/sdm
+sudo vgcreate hdfs_archival_1 /dev/sdm
+sudo lvcreate -l 100%FREE -n hdfs_archival_1_lvm hdfs_archival_1
+sudo mkfs -t ext4 /dev/hdfs_archival_1/hdfs_archival_1_lvm
+sudo mkdir  /m_archival_1
+sudo mount /dev/hdfs_archival_1/hdfs_archival_1_lvm /m_archival_1
+/dev/mapper/hdfs_archival_1-hdfs_archival_1_lvm /m_archival_1 ext4
 </code></pre></div></div>
 
 <h2 id="what-is--in-first-line-of-scripts">What is #! in first line of scripts?</h2>
 
+
+      </section>
+      <footer>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+    
   </body>
 </html>
