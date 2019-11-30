@@ -2,5 +2,9 @@
   link: /
 - name: Blog
   link: /blog.html
+- name: Notes
+  link: /notes.html
+- name: Literature
+  link: /literature.html
 - name: About
   link: /about.html

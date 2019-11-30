@@ -1,8 +1,8 @@
 ---
 layout : default
-title : Python for Data Science
+<!-- title : dot -->
 ---
-
+{% include home_index.html%}
 <ul>
   {% for page in site.Python_Pages %}
     <li>
@@ -17,6 +17,13 @@ title : Python for Data Science
   {% for page in site.Hadoop %}
     <li>
       <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+      <!-- <p>{{ page.excerpt }}</p> -->
+    </li>
+  {% endfor %}
+  {% for page in site.Notes %}
+    <li>
+      <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+      <!-- <p>{{ page.excerpt }}</p> -->
     </li>
   {% endfor %}
 

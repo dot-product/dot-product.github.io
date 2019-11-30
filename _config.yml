@@ -42,9 +42,16 @@ theme: jekyll-theme-minimal
 collections:
   Python_Pages:
     output: true
+  My_Notes:
+    output: true
   Algorithms:
     output: true
   Hadoop:
     output: true
   Linux:
     output: true
+  Literature:
+    output: true
+
+  
+
