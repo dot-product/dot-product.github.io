@@ -42,6 +42,8 @@ theme: jekyll-theme-minimal
 collections:
   Python_Pages:
     output: true
+  Me:
+    output: true
   My_Notes:
     output: true
   Algorithms:
