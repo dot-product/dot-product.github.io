@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Proxmox Virtual Environment | Wecome to Wonderland</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Proxmox Virtual Environment" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Home Blog Notes Literature About" />
+<meta property="og:description" content="Home Blog Notes Literature About" />
+<link rel="canonical" href="http://localhost:4000/proxmox" />
+<meta property="og:url" content="http://localhost:4000/proxmox" />
+<meta property="og:site_name" content="Wecome to Wonderland" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-11-12T00:00:00+05:30" />
+<script type="application/ld+json">
+{"dateModified":"2019-11-12T00:00:00+05:30","datePublished":"2019-11-12T00:00:00+05:30","url":"http://localhost:4000/proxmox","headline":"Proxmox Virtual Environment","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/proxmox"},"description":"Home Blog Notes Literature About","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/">Wecome to Wonderland</a></h1>
+        
+        
+
+        <p>Thanks for visiting my site. Please take some time to look around!</p>
+
+        
+
+        
+
+        
+      </header>
+      <section>
+
+      <center>
+<nav>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/">
+	      Home
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/blog.html">
+	      Blog
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/notes.html">
+	      Notes
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/literature.html">
+	      Literature
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/about.html">
+	      About
+	    </a>
+	  </div>
+  
+</nav>
+</center>
+<p><br /><br /><br /></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Proxmox virtual environment is a virtualization tool that provide easy way of managing lxc containers and KVM based virtual machines.</p>
+<ul>
+  <li>It is a type II hypervisor because the virtualization layer is build on top of os</li>
+  <li>built on top of GNU/Linux debian</li>
+  <li></li>
+</ul>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>Free</li>
+  <li>Built in Firewall</li>
+  <li>Open vSwitch</li>
+  <li>GUI</li>
+  <li>KVM virtual machines</li>
+  <li>Linux containers or LXC</li>
+  <li>Storage Plugins
+    <ul>
+      <li>The local dir mount points</li>
+      <li>LVM</li>
+      <li>LVM thin</li>
+      <li>NFS</li>
+      <li>iSCSI</li>
+      <li>GlusterFS</li>
+      <li>Ceph Rados Block Devices(RBD)</li>
+      <li>ZFS over iSCSI</li>
+      <li>ZFS</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="proxmox-cluster">proxmox cluster</h2>
+
+<p>There is no master-slave in proxmox cluster. All nodes work together by sharing the same configuration.</p>
+
+<h2 id="commands">commands</h2>
+
+<ul>
+  <li>pvecm( proxmox cluster manager )
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pvecm create &lt;cluster name&gt;
+  pvecm status
+  pvecm add &lt;any of cluster nodes ip&gt;
+  pvecm nodes
+  pvecm delnode &lt;<span class="nb">hostname</span>/ip&gt;
+</code></pre></div>    </div>
+  </li>
+  <li></li>
+</ul>
+
+<h2 id="components">Components</h2>
+
+<h3 id="pmxcfsproxmox-cluster-filesystem">pmxcfs(proxmox cluster filesystem)</h3>
+
+<ul>
+  <li>It is a database driven fs, used to store configuration files. Any changes made to this filesystem are replicated to all nodes usinng corosync.</li>
+  <li>
+    <p>pmxfs is mounted at <code class="highlighter-rouge">/etc/pve</code></p>
+  </li>
+  <li>corosync(Corosync Cluster Engine)</li>
+  <li>DRBD(Distributed Replicated Block Devices)</li>
+  <li></li>
+</ul>
+
+<h2 id="servicesdaemons-running-on-each-node">services/daemons running on each node</h2>
+
+<ul>
+  <li>pvestatd</li>
+  <li>pmxcfs</li>
+  <li>pve-cluster</li>
+  <li>corosync</li>
+  <li></li>
+</ul>
+
+
+      </section>
+      <footer>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Maven | Wecome to Wonderland</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Maven" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Home Blog Notes Literature About" />
+<meta property="og:description" content="Home Blog Notes Literature About" />
+<link rel="canonical" href="http://localhost:4000/maven" />
+<meta property="og:url" content="http://localhost:4000/maven" />
+<meta property="og:site_name" content="Wecome to Wonderland" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-27T00:00:00+05:30" />
+<script type="application/ld+json">
+{"dateModified":"2019-01-27T00:00:00+05:30","datePublished":"2019-01-27T00:00:00+05:30","url":"http://localhost:4000/maven","headline":"Maven","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/maven"},"description":"Home Blog Notes Literature About","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/">Wecome to Wonderland</a></h1>
+        
+        
+
+        <p>Thanks for visiting my site. Please take some time to look around!</p>
+
+        
+
+        
+
+        
+      </header>
+      <section>
+
+      <center>
+<nav>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/">
+	      Home
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/blog.html">
+	      Blog
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/notes.html">
+	      Notes
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/literature.html">
+	      Literature
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/about.html">
+	      About
+	    </a>
+	  </div>
+  
+</nav>
+</center>
+<p><br /><br /><br /></p>
+
+<p>Maven is a java tool, so you must have java installed on your machine.</p>
+
+<h2 id="terminology">Terminology</h2>
+
+<ul>
+  <li>Proect, POM file( Project Object Model)</li>
+  <li>Goals, Phases, Build Life Cycle, profiles</li>
+  <li>plugins, groupID, artifactId, version</li>
+  <li>dependencies, repositories</li>
+</ul>
+
+<h2 id="example-pom-file">Example POM file</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+ 
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+ 
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;maven.compiler.source&gt;</span>1.7<span class="nt">&lt;/maven.compiler.source&gt;</span>
+    <span class="nt">&lt;maven.compiler.target&gt;</span>1.7<span class="nt">&lt;/maven.compiler.target&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+ 
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+
+</code></pre></div></div>
+
+<h2 id="maven-phases">Maven phases</h2>
+
+<p>Although hardly a comprehensive list, these are the most common default lifecycle phases executed.</p>
+
+<ul>
+  <li><strong>validate:</strong> validate the project is correct and all necessary information is available</li>
+  <li><strong>compile:</strong> compile the source code of the project</li>
+  <li><strong>test:</strong> test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed</li>
+  <li><strong>package:</strong> take the compiled code and package it in its distributable format, such as a JAR.</li>
+  <li><strong>integration-test:</strong> process and deploy the package if necessary into an environment where integration tests can be run</li>
+  <li><strong>verify:</strong> run any checks to verify the package is valid and meets quality criteria</li>
+  <li><strong>install:</strong> install the package into the local repository, for use as a dependency in other projects locally</li>
+  <li><strong>deploy:</strong> done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.</li>
+</ul>
+
+<p>There are two other Maven lifecycles of note beyond the default list above. They are</p>
+
+<ul>
+  <li><strong>clean:</strong> cleans up artifacts created by prior builds</li>
+  <li><strong>site:</strong> generates site documentation for this project</li>
+</ul>
+
+<h3 id="multi-module-projects">Multi Module projects</h3>
+
+<ul>
+  <li></li>
+</ul>
+
+<h2 id="example-commands">Example commands</h2>
+
+<ul>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      mvn clean dependency:copy-dependencies package 
+</code></pre></div>    </div>
+    <ul>
+      <li>It deletes all jars in targets folder, executes copy-dependencies goal in dependency plugin, and run package build life cycle phase</li>
+    </ul>
+  </li>
+</ul>
+
+
+      </section>
+      <footer>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+    
+  </body>
+</html>

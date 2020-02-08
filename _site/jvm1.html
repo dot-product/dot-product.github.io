@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JVM Parameters | Wecome to Wonderland</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JVM Parameters" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Home Blog Notes Literature About JVM Parameters Many of us write or use systems or applications which are written in java programming language. One of the important components in running these applications is JVM, Java Virtual Machine. There are many JVMs available, and the oracle hotspot is one of them." />
+<meta property="og:description" content="Home Blog Notes Literature About JVM Parameters Many of us write or use systems or applications which are written in java programming language. One of the important components in running these applications is JVM, Java Virtual Machine. There are many JVMs available, and the oracle hotspot is one of them." />
+<link rel="canonical" href="http://localhost:4000/jvm1" />
+<meta property="og:url" content="http://localhost:4000/jvm1" />
+<meta property="og:site_name" content="Wecome to Wonderland" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-10T00:00:00+05:30" />
+<script type="application/ld+json">
+{"dateModified":"2019-10-10T00:00:00+05:30","datePublished":"2019-10-10T00:00:00+05:30","url":"http://localhost:4000/jvm1","headline":"JVM Parameters","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jvm1"},"description":"Home Blog Notes Literature About JVM Parameters Many of us write or use systems or applications which are written in java programming language. One of the important components in running these applications is JVM, Java Virtual Machine. There are many JVMs available, and the oracle hotspot is one of them.","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/">Wecome to Wonderland</a></h1>
+        
+        
+
+        <p>Thanks for visiting my site. Please take some time to look around!</p>
+
+        
+
+        
+
+        
+      </header>
+      <section>
+
+      <center>
+<nav>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/">
+	      Home
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/blog.html">
+	      Blog
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/notes.html">
+	      Notes
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/literature.html">
+	      Literature
+	    </a>
+	  </div>
+  
+	  <div style="float: left; margin: 10px">
+	    <a href="/about.html">
+	      About
+	    </a>
+	  </div>
+  
+</nav>
+</center>
+<p><br /><br /><br /></p>
+
+<h2 id="jvm-parameters">JVM Parameters</h2>
+<p>Many of us write or use systems or applications which are written in java programming language. One of the important components in running these applications is JVM, Java Virtual Machine. There are many JVMs available, and the oracle hotspot is one of them.</p>
+
+<p>This JVM observes the code execution patterns and finds the most frequently used spots/codes in the execution. It optimizes execution based on these hotspots. In this post, I will discuss how to add parameters to JVM and some important parameters that we should keep in mind to avoid operational issues.</p>
+
+<p>The basic command that is used to run a java class is</p>
+<pre style="color: #d1d1d1; background: #000000;">java <span style="color: #d2cd86;">[</span>options<span style="color: #d2cd86;">]</span> className
+</pre>
+<p>java options are categorized as</p>
+<table style="border: 1px solid black; border-collapse: collapse;">
+<tbody>
+<tr>
+<th style="text-align: center;">Category</th>
+<th style="text-align: center;">Option syntax</th>
+</tr>
+<tr>
+<td>Standard</td>
+<td>
+<ul>
+	<li>No special syntax</li>
+	<li>Examples: -client, -server, -classpath, -jar</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Non-Standard</td>
+<td>
+<ul>
+	<li>Not guaranteed to be supported on all VM implementations</li>
+	<li>Starts with -X</li>
+	<li>Examples
+<ul>
+	<li>-Xms</li>
+	<li>-Xmx</li>
+	<li>-Xloggc:file</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Non-Stable</td>
+<td>
+<ul>
+	<li>Starts with -XX</li>
+	<li>Boolean Options
+<ul>
+	<li>turned on -XX:+parameter</li>
+	<li>turned off -XX:-parameter</li>
+</ul>
+</li>
+	<li>Numeric value
+<ul>
+	<li>-XX:parameter=value</li>
+</ul>
+</li>
+	<li>String value
+<ul>
+	<li>-XX:parameter=value</li>
+	<li>single or double quotes are not required</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>System</td>
+<td>
+<ul>
+	<li>Sets a system property</li>
+	<li>Starts with -D</li>
+	<li>-Dproperty=value</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example command</p>
+<pre style="color: #d1d1d1; background: #000000;">usr<span style="color: #d2cd86;">/</span>lib<span style="color: #d2cd86;">/</span>jvm<span style="color: #d2cd86;">/</span>java<span style="color: #d2cd86;">-</span><span style="color: #008c00;">8</span><span style="color: #d2cd86;">-</span>oracle<span style="color: #d2cd86;">/</span>bin<span style="color: #d2cd86;">/</span>java 
+<span style="color: #d2cd86;">-</span>Dhdfs<span style="color: #d2cd86;">.</span>audit<span style="color: #d2cd86;">.</span>logger<span style="color: #d2cd86;">=</span>INFO<span style="color: #d2cd86;">,</span>RFAAUDIT 
+<span style="color: #d2cd86;">-</span>Dsecurity<span style="color: #d2cd86;">.</span>audit<span style="color: #d2cd86;">.</span>logger<span style="color: #d2cd86;">=</span>INFO<span style="color: #d2cd86;">,</span>RFAS 
+<span style="color: #d2cd86;">-</span>Djava<span style="color: #d2cd86;">.</span>net<span style="color: #d2cd86;">.</span>preferIPv4Stack<span style="color: #d2cd86;">=</span>true 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>log<span style="color: #d2cd86;">.</span>dir<span style="color: #d2cd86;">=</span><span style="color: #d2cd86;">/</span>var<span style="color: #d2cd86;">/</span><span style="color: #e66170; font-weight: bold;">log</span><span style="color: #d2cd86;">/</span>hadoop<span style="color: #d2cd86;">-</span>hdfs 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>log<span style="color: #d2cd86;">.</span>file<span style="color: #d2cd86;">=</span>hadoop<span style="color: #d2cd86;">-</span>cmf<span style="color: #d2cd86;">-</span>hdfs<span style="color: #d2cd86;">-</span>DATANODE<span style="color: #d2cd86;">-</span>compute<span style="color: #d2cd86;">.</span>log<span style="color: #d2cd86;">.</span>out 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>home<span style="color: #d2cd86;">.</span>dir<span style="color: #d2cd86;">=</span><span style="color: #d2cd86;">/</span>opt<span style="color: #d2cd86;">/</span>cloudera<span style="color: #d2cd86;">/</span>parcels<span style="color: #d2cd86;">/</span>CDH<span style="color: #d2cd86;">-</span><span style="color: #009f00;">5.16</span><span style="color: #d2cd86;">.</span><span style="color: #008c00;">1</span><span style="color: #d2cd86;">-</span><span style="color: #009f00;">1.</span>cdh5<span style="color: #d2cd86;">.</span><span style="color: #009f00;">16.1</span><span style="color: #d2cd86;">.</span>p0<span style="color: #d2cd86;">.</span><span style="color: #008c00;">3</span><span style="color: #d2cd86;">/</span>lib<span style="color: #d2cd86;">/</span>hadoop 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>id<span style="color: #d2cd86;">.</span>str<span style="color: #d2cd86;">=</span>hdfs 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>root<span style="color: #d2cd86;">.</span>logger<span style="color: #d2cd86;">=</span>INFO<span style="color: #d2cd86;">,</span>RFA 
+<span style="color: #d2cd86;">-</span>Djava<span style="color: #d2cd86;">.</span>library<span style="color: #d2cd86;">.</span>path<span style="color: #d2cd86;">=</span><span style="color: #d2cd86;">/</span>opt<span style="color: #d2cd86;">/</span>cloudera<span style="color: #d2cd86;">/</span>parcels<span style="color: #d2cd86;">/</span>CDH<span style="color: #d2cd86;">-</span><span style="color: #009f00;">5.16</span><span style="color: #d2cd86;">.</span><span style="color: #008c00;">1</span><span style="color: #d2cd86;">-</span><span style="color: #009f00;">1.</span>cdh5<span style="color: #d2cd86;">.</span><span style="color: #009f00;">16.1</span><span style="color: #d2cd86;">.</span>p0<span style="color: #d2cd86;">.</span><span style="color: #008c00;">3</span><span style="color: #d2cd86;">/</span>lib<span style="color: #d2cd86;">/</span>hadoop<span style="color: #d2cd86;">/</span>lib<span style="color: #d2cd86;">/</span>native 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>policy<span style="color: #d2cd86;">.</span>file<span style="color: #d2cd86;">=</span>hadoop<span style="color: #d2cd86;">-</span>policy<span style="color: #d2cd86;">.</span>xml 
+<span style="color: #d2cd86;">-</span>Djava<span style="color: #d2cd86;">.</span>net<span style="color: #d2cd86;">.</span>preferIPv4Stack<span style="color: #d2cd86;">=</span>true 
+<span style="color: #d2cd86;">-</span>server 
+<span style="color: #d2cd86;">-</span>Xms6442450944 
+<span style="color: #d2cd86;">-</span>Xmx6442450944 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span><span style="color: #d2cd86;">+</span>UseParNewGC 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span><span style="color: #d2cd86;">+</span>UseConcMarkSweepGC 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span>CMSInitiatingOccupancyFraction<span style="color: #d2cd86;">=</span><span style="color: #008c00;">70</span> 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span><span style="color: #d2cd86;">+</span>CMSParallelRemarkEnabled 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span><span style="color: #d2cd86;">+</span>HeapDumpOnOutOfMemoryError 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span>HeapDumpPath<span style="color: #d2cd86;">=</span><span style="color: #d2cd86;">/</span>tmp<span style="color: #d2cd86;">/</span>hdfs_hdfs<span style="color: #d2cd86;">-</span>DATANODE<span style="color: #d2cd86;">-</span><span style="color: #ffffff; background: #dd0000;">03ffc6ac05df7756f611f7e883f48701_pid17717</span><span style="color: #d2cd86;">.</span>hprof 
+<span style="color: #d2cd86;">-</span>XX<span style="color: #b060b0;">:</span>OnOutOfMemoryError<span style="color: #d2cd86;">=</span><span style="color: #d2cd86;">/</span>usr<span style="color: #d2cd86;">/</span>lib<span style="color: #d2cd86;">/</span>cmf<span style="color: #d2cd86;">/</span>service<span style="color: #d2cd86;">/</span>common<span style="color: #d2cd86;">/</span>killparent<span style="color: #d2cd86;">.</span>sh 
+<span style="color: #d2cd86;">-</span>Dhadoop<span style="color: #d2cd86;">.</span>security<span style="color: #d2cd86;">.</span>logger<span style="color: #d2cd86;">=</span>INFO<span style="color: #d2cd86;">,</span>RFAS org<span style="color: #d2cd86;">.</span>apache<span style="color: #d2cd86;">.</span>hadoop<span style="color: #d2cd86;">.</span>hdfs<span style="color: #d2cd86;">.</span>server<span style="color: #d2cd86;">.</span>datanode<span style="color: #d2cd86;">.</span>DataNode
+</pre>
+
+
+      </section>
+      <footer>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+    
+  </body>
+</html>
